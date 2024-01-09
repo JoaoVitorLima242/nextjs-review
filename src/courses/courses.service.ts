@@ -36,6 +36,7 @@ export class CoursesService {
 
       this.courses[index] = {
         id,
+        ...this.courses[index],
         ...updateCourseDTO,
       };
     }
