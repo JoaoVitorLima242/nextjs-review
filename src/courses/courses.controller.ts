@@ -1,10 +1,30 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  Patch,
+  Post,
+  Res,
+} from '@nestjs/common';
+
+interface Course {
+  id: number;
+  name: string;
+  description: string;
+  tags: string[];
+}
 
 @Controller('courses')
 export class CoursesController {
   @Get()
-  findAll() {
-    return 'Course List';
+  findAll(@Res() response) {
+    return response.status(200).json({
+      message: 'Courses List',
+    });
   }
 
   @Get(':id')
@@ -15,13 +35,23 @@ export class CoursesController {
   @Post()
   create(
     @Body()
-    body: {
-      id: number;
-      name: string;
-      description: string;
-      tags: string[];
-    },
+    body: Course,
   ) {
     return body;
+  }
+
+  @Patch(':id')
+  update(
+    @Param('id') id: string,
+    @Body()
+    body: Course,
+  ) {
+    return 'update course id: ' + id + ' body: ' + JSON.stringify(body);
+  }
+
+  @HttpCode(HttpStatus.NO_CONTENT)
+  @Delete(':id')
+  deleteById(@Param('id') id: string) {
+    return 'delete course id: ' + id;
   }
 }
