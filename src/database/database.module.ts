@@ -12,7 +12,7 @@ export const dataSourceOptions: DataSourceOptions = {
   password: 'docker',
   database: 'nest-review',
   entities: [Course, Tag],
-  synchronize: true,
+  synchronize: false,
 };
 
 @Module({
