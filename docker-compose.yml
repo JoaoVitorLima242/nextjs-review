@@ -1,0 +1,18 @@
+version: '3.1'
+
+services:
+  db:
+    build: .
+    container_name: nest-review-db
+    restart: always
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_database:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=nest-review
+
+volumes:
+    postgres_database:
+        external: true
