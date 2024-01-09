@@ -24,22 +24,30 @@ export class CoursesService {
     return course;
   }
 
-  create(createCourseDTO: CreateCourseDTO) {
-    this.courses.push({ id: this.courses.length + 1, ...createCourseDTO });
+  create(createCourseDTO: CreateCourseDTO): Course {
+    const newCourse: Course = {
+      id: this.courses.length + 1,
+      ...createCourseDTO,
+    };
+    this.courses.push(newCourse);
+
+    return newCourse;
   }
 
-  update(id: number, updateCourseDTO: UpdateCourseDTO): void {
-    const existingCourse = this.findById(id);
+  update(id: number, updateCourseDTO: UpdateCourseDTO): Course {
+    this.notFoundCourseValidation(id);
 
-    if (existingCourse) {
-      const index = this.courses.findIndex((course) => id === course.id);
+    const index = this.courses.findIndex((course) => id === course.id);
 
-      this.courses[index] = {
-        id,
-        ...this.courses[index],
-        ...updateCourseDTO,
-      };
-    }
+    const updatedCourse = {
+      id,
+      ...this.courses[index],
+      ...updateCourseDTO,
+    };
+
+    this.courses[index] = updatedCourse;
+
+    return updatedCourse;
   }
 
   delete(id: number) {

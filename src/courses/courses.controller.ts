@@ -22,8 +22,8 @@ export class CoursesController {
   }
 
   @Get(':id')
-  findById(@Param() params: { id: string }) {
-    return this.courseService.findById(+params.id);
+  findById(@Param('id') id: number) {
+    return this.courseService.findById(id);
   }
 
   @Post()
@@ -36,16 +36,16 @@ export class CoursesController {
 
   @Put(':id')
   update(
-    @Param('id') id: string,
+    @Param('id') id: number,
     @Body()
     body: UpdateCourseDTO,
   ) {
-    return this.courseService.update(+id, body);
+    return this.courseService.update(id, body);
   }
 
   @HttpCode(HttpStatus.NO_CONTENT)
   @Delete(':id')
-  deleteById(@Param('id') id: string) {
-    return this.courseService.delete(+id);
+  deleteById(@Param('id') id: number) {
+    return this.courseService.delete(id);
   }
 }
