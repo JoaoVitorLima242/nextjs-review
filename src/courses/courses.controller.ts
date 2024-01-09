@@ -10,16 +10,12 @@ import {
   Post,
   Res,
 } from '@nestjs/common';
-
-interface Course {
-  id: number;
-  name: string;
-  description: string;
-  tags: string[];
-}
+import { CoursesService } from './courses.service';
+import { Course } from './courses.entity';
 
 @Controller('courses')
 export class CoursesController {
+  constructor(private readonly courseService: CoursesService) {}
   @Get()
   findAll(@Res() response) {
     return response.status(200).json({
