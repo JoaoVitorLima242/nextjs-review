@@ -21,7 +21,7 @@ export class CoursesService {
     });
   }
 
-  async findById(id: number): Promise<Course> {
+  async findById(id: string): Promise<Course> {
     return this.notFoundCourseValidation(id);
   }
 
@@ -37,7 +37,7 @@ export class CoursesService {
     return this.courseRepository.save(newCourse);
   }
 
-  async update(id: number, updateCourseDTO: UpdateCourseDTO): Promise<Course> {
+  async update(id: string, updateCourseDTO: UpdateCourseDTO): Promise<Course> {
     const tags =
       updateCourseDTO.tags.length &&
       (await Promise.all(
@@ -55,13 +55,13 @@ export class CoursesService {
     return this.courseRepository.save(course);
   }
 
-  async delete(id: number) {
+  async delete(id: string) {
     const course = await this.notFoundCourseValidation(id);
 
     return this.courseRepository.remove(course);
   }
 
-  private async notFoundCourseValidation(id: number): Promise<Course> {
+  private async notFoundCourseValidation(id: string): Promise<Course> {
     const course = await this.courseRepository.findOne({
       where: { id },
       relations: ['tags'],
