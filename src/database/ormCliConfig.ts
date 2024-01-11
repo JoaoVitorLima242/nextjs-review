@@ -4,6 +4,7 @@ import { CreateCourseTable1704841911699 } from 'src/migrations/1704841911699-Cre
 import { CreateTagsTable1704843280081 } from 'src/migrations/1704843280081-CreateTagsTable';
 import { AddTimestampCollumnTag1704843443853 } from 'src/migrations/1704843443853-AddTimestampCollumnTag';
 import { CreateCoursesTagsRelationshipTable1704985697543 } from 'src/migrations/1704985697543-CreateCoursesTagsRelationshipTable';
+import { AddRelationCollumnCoursesTagsTable1704986494041 } from 'src/migrations/1704986494041-AddRelationCollumnCoursesTagsTable';
 
 export const dataSource = new DataSource({
   ...dataSourceOptions,
@@ -13,5 +14,6 @@ export const dataSource = new DataSource({
     CreateTagsTable1704843280081,
     AddTimestampCollumnTag1704843443853,
     CreateCoursesTagsRelationshipTable1704985697543,
+    AddRelationCollumnCoursesTagsTable1704986494041,
   ],
 });
